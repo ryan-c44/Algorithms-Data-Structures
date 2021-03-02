@@ -1,0 +1,93 @@
+Overview
+Merge sort is performed using the following steps:
+
+#1) The list to be sorted is divided into two arrays of equal length by dividing the list on the middle element. If the number of elements in the list is either 0 or 1, then the list is considered sorted.
+
+#2) Each sublist is sorted individually by using merge sort recursively.
+
+#3) The sorted sublists are then combined or merged together to form a complete sorted list.
+
+General Algorithm
+The general pseudo-code for the merge sort technique is given below.
+
+Declare an array Arr of length N
+If N=1, Arr is already sorted
+If N>1,
+Left = 0, right = N-1
+Find middle = (left + right)/2
+Call merge_sort(Arr,left,middle) =>sort first half recursively
+Call merge_sort(Arr,middle+1,right) => sort second half recursively
+Call merge(Arr, left, middle, right) to merge sorted arrays in above steps.
+Exit
+
+As shown in the above pseudo code, in merge sort algorithm we divide the array into half and sort each half using merge sort recursively. Once sub-arrays are sorted individually, the two sub-arrays are merged together to form a complete sorted array.
+
+Pseudo Code For Merge Sort
+Following is the pseudo code for merge sort technique. First, we have a procedure merge sort to split the array into halves recursively. Then we have a merge routine that will merge the sorted smaller arrays to get a complete sorted array.
+
+procedure mergesort( array,N )
+array – list of elements to be sorted
+N – number of elements in the list
+begin
+if ( N == 1 ) return array
+var array1 as array = a[0] ... a[N/2]
+var array2 as array = a[N/2+1] ... a[N]
+array1 = mergesort(array1)
+array2 = mergesort(array2)
+return merge( array1, array2 )
+end procedure
+procedure merge(array1, array2 )
+    array1 – first array
+    array2 – second array
+begin
+var c as array
+while ( a and b have elements )
+if ( array1[0] > array2[0] )
+             add array2 [0] to the end of c
+            remove array2 [0] from array2
+else
+            add array1 [0] to the end of c
+             remove array1 [0] from array1
+end if
+end while
+while ( a has elements )
+add a[0] to the end of c
+remove a[0] from a
+end while
+    
+while ( b has elements )
+add b[0] to the end of c
+remove b[0] from b
+end while
+    
+return c
+end procedure
+Let us now illustrate the merge sort technique with an example.
+
+Illustration
+merge sort Illustration
+
+The above illustration can be shown in a tabular form below:
+
+Pass	Unsorted list	divide	Sorted list
+1	{12, 23,2,43,51,35,19,4 }	{12,23,2,43}
+{51,35,19,4}	{}
+2	{12,23,2,43}
+{51,35,19,4}	{12,23}{2,43}
+{51,35}{19,4}	{}
+3	{12,23}{2,43}
+{51,35}{19,4}	{12,23} {2,43}
+{35,51}{4,19}	{12,23} {2,43}
+{35,51}{4,19}
+4	{12,23} {2,43}
+{35,51}{4,19}	{2,12,23,43}
+{4,19,35,51}	{2,12,23,43}
+{4,19,35,51}
+5	{2,12,23,43}
+{4,19,35,51}	{2,4,12,19,23,35,43,51}	{2,4,12,19,23,35,43,51}
+6	{}	{}	{2,4,12,19,23,35,43,51}
+As shown in the above representation, first the array is divided into two sub-arrays of length 4. Each sub-array is further divided into two more sub arrays of length 2. Each sub-array is then further divided into a sub-array of one element each. This entire process is the “Divide” process.
+with
+Once we have divided the array into sub-arrays of single element each, we now have to merge these arrays in sorted order.
+
+As shown in the illustration above, we consider each subarray of a single element and first combine the elements to form sub-arrays of two elements in sorted order. Next, the sorted subarrays of length two are sorted and combined to form two sub-arrays of length four each. Then we combine these two sub-arrays to form a complete sorted array.
